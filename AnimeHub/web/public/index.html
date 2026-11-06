@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Hub - Tu Portal Personal de Anime</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand" id="brand-logo">
+                <i class="fa-solid fa-play-circle logo-icon"></i>
+                <span class="logo-text">ANIME<span>HUB</span></span>
+            </div>
+
+            <nav class="nav-links">
+                <button class="nav-btn active" id="btn-season"><i class="fa-solid fa-fire"></i> En Emisión</button>
+                <button class="nav-btn" id="btn-popular"><i class="fa-solid fa-star"></i> Populares</button>
+                <button class="nav-btn" id="btn-favorites"><i class="fa-solid fa-bookmark"></i> Mi Lista</button>
+                <button class="nav-btn" id="btn-custom"><i class="fa-solid fa-folder-plus"></i> Mis Animes</button>
+            </nav>
+
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Buscar anime...">
+                <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <button class="add-anime-btn" id="open-add-modal">
+                <i class="fa-solid fa-plus"></i> Añadir Anime
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-content">
+
+        <!-- Continuar Viendo (Historial) -->
+        <section class="continue-watching-section" id="continue-section" style="display:none;">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-clock-rotate-left"></i> Continuar Viendo</h2>
+            </div>
+            <div class="continue-grid" id="continue-grid">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Filtros por Género -->
+        <div class="genre-filter-bar" id="genre-filter-bar">
+            <button class="genre-btn active" data-genre="all">Todos</button>
+            <button class="genre-btn" data-genre="Action">Acción</button>
+            <button class="genre-btn" data-genre="Comedy">Comedia</button>
+            <button class="genre-btn" data-genre="Romance">Romance</button>
+            <button class="genre-btn" data-genre="Fantasy">Fantasía</button>
+            <button class="genre-btn" data-genre="Adventure">Aventura</button>
+            <button class="genre-btn" data-genre="Sci-Fi">Ciencia Ficción</button>
+            <button class="genre-btn" data-genre="Drama">Drama</button>
+            <button class="genre-btn" data-genre="Supernatural">Sobrenatural</button>
+        </div>
+
+        <!-- Section Title -->
+        <div class="section-header">
+            <h2 id="section-title">Animes en Emisión</h2>
+            <span class="badge" id="item-count">Cargando...</span>
+        </div>
+
+        <!-- Anime Grid -->
+        <div class="anime-grid" id="anime-grid">
+            <div class="loading-spinner">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                <p>Cargando catálogo...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Anime Detail Modal -->
+    <div class="modal" id="anime-modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal">&times;</button>
+            <div class="modal-body" id="modal-body">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Custom Anime Modal -->
+    <div class="modal" id="add-anime-modal">
+        <div class="modal-content form-modal">
+            <button class="close-btn" id="close-add-modal">&times;</button>
+            <div class="modal-body">
+                <h2><i class="fa-solid fa-circle-plus"></i> Añadir Anime Personalizado</h2>
+                <form id="add-anime-form">
+                    <div class="form-group">
+                        <label>Título del Anime *</label>
+                        <input type="text" id="add-title" required placeholder="Ej. Boku no Hero Academia">
+                    </div>
+
+                    <div class="form-group">
+                        <label>URL de Imagen / Póster</label>
+                        <input type="url" id="add-image" placeholder="https://ejemplo.com/poster.jpg">
+                    </div>
+
+                    <div class="form-section-title">
+                        <i class="fa-solid fa-server"></i> Servidores de Video (Mega, Streamwish, Fembed, etc.)
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre Servidor 1</label>
+                            <input type="text" id="srv1-name" value="Mega HD" placeholder="Mega / Streamwish">
+                        </div>
+                        <div class="form-group">
+                            <label>URL de Embed Servidor 1</label>
+                            <input type="url" id="srv1-url" placeholder="https://mega.nz/embed/... o https://...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre Servidor 2</label>
+                            <input type="text" id="srv2-name" value="Streamwish" placeholder="Streamwish / Filemoon">
+                        </div>
+                        <div class="form-group">
+                            <label>URL de Embed Servidor 2</label>
+                            <input type="url" id="srv2-url" placeholder="https://streamwish.to/e/...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Número de Episodios</label>
+                            <input type="number" id="add-episodes" value="12" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Géneros (separados por coma)</label>
+                            <input type="text" id="add-genres" placeholder="Acción, Comedia, Aventura">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sinopsis / Descripción</label>
+                        <textarea id="add-synopsis" rows="2" placeholder="Escribe un resumen..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn"><i class="fa-solid fa-save"></i> Guardar Anime y Servidores</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Añadir Nuevo Servidor Directamente al Reproductor -->
+    <div class="modal" id="add-server-modal">
+        <div class="modal-content form-modal" style="max-width: 500px;">
+            <button class="close-btn" id="close-add-server-modal">&times;</button>
+            <div class="modal-body">
+                <h2><i class="fa-solid fa-server"></i> Añadir Nuevo Servidor de Video</h2>
+                <form id="add-server-form">
+                    <div class="form-group">
+                        <label>Nombre del Servidor *</label>
+                        <input type="text" id="new-srv-name" required placeholder="Ej. Mega Latino, Streamwish, Fembed">
+                    </div>
+                    <div class="form-group">
+                        <label>URL del Video / Embed *</label>
+                        <input type="url" id="new-srv-url" required placeholder="Ej. https://mega.nz/embed/... o link embed/mp4">
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fa-solid fa-plus-circle"></i> Añadir Servidor y Reproducir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Anime Hub &copy; 2025 - Plataforma de uso personal y educativo.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
