@@ -112,6 +112,27 @@ body {
     transform: scale(1.03);
 }
 
+.auth-btn {
+    background-color: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-secondary);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+}
+
+.auth-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: scale(1.08);
+}
+
 /* Search Box */
 .search-box {
     display: flex;
@@ -692,18 +713,33 @@ body {
     overflow: hidden;
 }
 
-.player-container iframe {
+.player-container iframe,
+.player-container video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     border: none;
+    background-color: #000;
 }
 
 /* Episodes Grid */
 .episodes-section {
     margin-top: 2rem;
+}
+
+.episodes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+}
+
+.episodes-header h3 {
+    margin: 0;
 }
 
 .episodes-grid {
@@ -713,6 +749,55 @@ body {
     margin-top: 1rem;
     max-height: 250px;
     overflow-y: auto;
+}
+
+.ep-item {
+    position: relative;
+}
+
+.ep-del-btn {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.65);
+    border: none;
+    color: #ff6b6b;
+    font-size: 0.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.45;
+    transition: var(--transition);
+    z-index: 2;
+}
+
+.ep-item:hover .ep-del-btn,
+.ep-del-btn:hover {
+    opacity: 1;
+}
+
+.ep-del-btn:hover {
+    background-color: #d9534f;
+    color: white;
+    transform: scale(1.15);
+}
+
+.scope-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+}
+
+.scope-check input {
+    accent-color: var(--accent);
 }
 
 .ep-btn {
@@ -747,23 +832,161 @@ body {
     .nav-container {
         flex-direction: column;
         align-items: stretch;
+        padding: 0.8rem 1rem;
+        gap: 0.8rem;
+    }
+
+    .brand {
+        font-size: 1.2rem;
+        justify-content: center;
+    }
+
+    .nav-links {
+        justify-content: center;
+    }
+
+    .nav-btn {
+        font-size: 0.82rem;
+        padding: 0.4rem 0.7rem;
     }
 
     .search-box {
         width: 100%;
     }
 
+    .add-anime-btn {
+        justify-content: center;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .section-header {
+        margin-bottom: 1.2rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .genre-filter-bar {
+        gap: 0.4rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .genre-btn {
+        font-size: 0.78rem;
+        padding: 0.35rem 0.8rem;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .continue-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.7rem;
+    }
+
+    .continue-card {
+        padding: 0.6rem;
+        gap: 0.6rem;
+    }
+
+    .continue-card img {
+        width: 45px;
+        height: 60px;
+    }
+
+    .modal-content {
+        max-width: 100%;
+        max-height: 95vh;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .close-btn {
+        top: 8px;
+        right: 8px;
+        width: 36px;
+        height: 36px;
+        font-size: 1.5rem;
+    }
+
     .detail-header {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
     }
 
     .detail-poster {
-        width: 160px;
+        width: 140px;
+    }
+
+    .detail-title {
+        font-size: 1.35rem;
+    }
+
+    .detail-synopsis {
+        font-size: 0.85rem;
+        max-height: 100px;
+    }
+
+    .video-section {
+        padding: 0.8rem;
+    }
+
+    .video-section-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+
+    .player-controls-bar {
+        justify-content: center;
+    }
+
+    .ctrl-btn {
+        font-size: 0.8rem;
+        padding: 0.45rem 0.8rem;
+    }
+
+    .episodes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 0.5rem;
+        max-height: 200px;
+    }
+
+    .ep-btn {
+        font-size: 0.78rem;
+        padding: 0.5rem;
+    }
+
+    .server-selector {
+        gap: 0.4rem;
+    }
+
+    .server-btn {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.6rem;
     }
 
     .form-row {
         grid-template-columns: 1fr;
+    }
+
+    .episodes-section h3 {
+        font-size: 1rem;
+    }
+
+    .footer {
+        padding: 1rem;
+        font-size: 0.8rem;
     }
 }

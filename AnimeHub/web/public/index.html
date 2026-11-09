@@ -34,6 +34,10 @@
             <button class="add-anime-btn" id="open-add-modal">
                 <i class="fa-solid fa-plus"></i> Añadir Anime
             </button>
+
+            <button class="auth-btn" id="auth-btn" title="Acceso administrador">
+                <i class="fa-solid fa-lock" id="auth-icon"></i>
+            </button>
         </div>
     </header>
 
@@ -168,8 +172,74 @@
                         <label>URL del Video / Embed *</label>
                         <input type="url" id="new-srv-url" required placeholder="Ej. https://mega.nz/embed/... o link embed/mp4">
                     </div>
+                    <label class="scope-check">
+                        <input type="checkbox" id="new-srv-episode-only">
+                        Guardar solo para el episodio actual
+                    </label>
                     <button type="submit" class="submit-btn"><i class="fa-solid fa-plus-circle"></i> Añadir Servidor y Reproducir</button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Añadir Episodio -->
+    <div class="modal" id="episode-modal">
+        <div class="modal-content form-modal" style="max-width: 500px;">
+            <button class="close-btn" id="close-episode-modal">&times;</button>
+            <div class="modal-body">
+                <h2><i class="fa-solid fa-list-ol"></i> Añadir Episodio</h2>
+                <form id="episode-form">
+                    <div class="form-group">
+                        <label>Número de Episodio *</label>
+                        <input type="number" id="ep-num" min="1" required placeholder="Ej. 13">
+                    </div>
+
+                    <div class="form-section-title">
+                        <i class="fa-solid fa-server"></i> Servidor del Episodio (opcional)
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre Servidor 1</label>
+                            <input type="text" id="ep-srv1-name" placeholder="Mega / Streamwish">
+                        </div>
+                        <div class="form-group">
+                            <label>URL Embed 1</label>
+                            <input type="url" id="ep-srv1-url" placeholder="https://mega.nz/embed/... o https://...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre Servidor 2</label>
+                            <input type="text" id="ep-srv2-name" placeholder="Streamwish / Filemoon">
+                        </div>
+                        <div class="form-group">
+                            <label>URL Embed 2</label>
+                            <input type="url" id="ep-srv2-url" placeholder="https://streamwish.to/e/...">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn"><i class="fa-solid fa-plus-circle"></i> Añadir Episodio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal (Acceso Administrador) -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content form-modal" style="max-width: 400px;">
+            <button class="close-btn" id="close-login-modal">&times;</button>
+            <div class="modal-body">
+                <h2><i class="fa-solid fa-lock"></i> Acceso Administrador</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" id="login-password" required placeholder="Contraseña de admin">
+                    </div>
+                    <button type="submit" class="submit-btn"><i class="fa-solid fa-right-to-bracket"></i> Entrar</button>
+                </form>
+                <p id="login-error" style="color: #ff6b6b; display: none; margin-top: 0.8rem; font-size: 0.85rem;"></p>
             </div>
         </div>
     </div>
@@ -179,6 +249,7 @@
         <p>Anime Hub &copy; 2025 - Plataforma de uso personal y educativo.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
     <script src="app.js"></script>
 </body>
 </html>
